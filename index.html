@@ -60,9 +60,18 @@
             else{
                 alert("Invalid Input")
             }
+
+            let color;
+            if(bmi > 18.5 && bmi < 25.99){
+                color = "green"
+            }
+            else{
+                color = "red";
+            }
+
             
             document.getElementById('output').innerHTML = `
-                <div id="result" class="font-[500] bg-green-900 px-4 py-2 rounded-md shadow">
+                <div id="result" class="font-[500] bg-${color}-900 px-4 py-2 rounded-md shadow">
                     <p>Your BMI is : ${bmi} (You are ${text})</p>
                 </div>
             `
