@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <section class="w-full max-w-md mx-auto mt-10 p-6 rounded-lg shadow-lg bg-blue-500 text-white">
+        <h1 class="text-2xl font-bold text-center">BMI Calculator</h1>
+        <div class="mt-6 flex flex-col gap-4">
+            <input id="w" class="bg-white text-gray-700 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300" 
+                type="number" placeholder="Enter weight (kg)">
+            <div class="flex justify-between gap-2">
+                <input id="f" class="bg-white text-gray-700 px-4 py-2 rounded-md w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-300" 
+                    type="number" placeholder="Feet">
+                <input id="i" class="bg-white text-gray-700 px-4 py-2 rounded-md w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-300" 
+                    type="number" placeholder="Inch">
+            </div>
+            <div id="output">
+                
+            </div>
+            <button id="submit" class="bg-white text-blue-500 font-semibold py-2 px-4 rounded-md hover:bg-blue-600 hover:text-white transition duration-300">
+                Calculate
+            </button>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('submit').addEventListener('click' , function(){
+            const weight = document.getElementById('w').value;
+            const feet = document.getElementById('f').value;
+            const inch = document.getElementById('i').value;
+            
+            let height = feet*0.3048 + inch*0.0254;
+            let bmi =  weight/(height*height);
+            bmi = bmi.toFixed(2);
+            console.log(bmi);
+
+            let text;
+            if(bmi < 18.5){
+                text = "Under Weight"
+            }
+            else if(bmi > 18.5 && bmi < 25.99){
+                text = "Normal Weight"
+            }
+            else if(bmi > 25 && bmi < 29.99){
+                text = "Over Weight"
+            }
+            else if(bmi > 30 && bmi < 34.99){
+                text = "Obese Class I"
+            }
+            else if(bmi > 35 && bmi < 39.99){
+                text = "Obese Class II"
+            }
+            else if(bmi > 40){
+                text = "Obese Class III"
+            }
+            else{
+                alert("Invalid Input")
+            }
+            
+            document.getElementById('output').innerHTML = `
+                <div id="result" class="font-[500] bg-green-900 px-4 py-2 rounded-md shadow">
+                    <p>Your BMI is : ${bmi} (You are ${text})</p>
+                </div>
+            `
+        })
+    </script>
+</body>
+</html>
