@@ -21,9 +21,14 @@
             <div id="output">
                 
             </div>
-            <button id="submit" class="bg-white text-blue-500 font-semibold py-2 px-4 rounded-md hover:bg-blue-600 hover:text-white transition duration-300">
-                Calculate
-            </button>
+            <div class="grid grid-cols-2 gap-3">
+                <button id="submit" class="bg-white text-blue-500 font-semibold py-2 px-4 rounded-md hover:bg-blue-600 hover:text-white transition duration-300">
+                    Calculate
+                </button>
+                <button id="clear" class="bg-white text-red-500 font-semibold py-2 px-4 rounded-md hover:bg-red-600 hover:text-white transition duration-300">
+                    Clear
+                </button>
+            </div>
         </div>
     </section>
 
@@ -42,7 +47,7 @@
             if(bmi < 18.5){
                 text = "Under Weight"
             }
-            else if(bmi > 18.5 && bmi < 25.99){
+            else if(bmi > 18.5 && bmi < 24.99){
                 text = "Normal Weight"
             }
             else if(bmi > 25 && bmi < 29.99){
@@ -58,7 +63,8 @@
                 text = "Obese Class III"
             }
             else{
-                alert("Invalid Input")
+                alert("Invalid Input");
+                return;
             }
 
             let color;
@@ -68,13 +74,18 @@
             else{
                 color = "red";
             }
-
-            
             document.getElementById('output').innerHTML = `
                 <div id="result" class="font-[500] bg-${color}-900 px-4 py-2 rounded-md shadow">
                     <p>Your BMI is : ${bmi} (You are ${text})</p>
                 </div>
             `
+
+            document.getElementById('clear').addEventListener('click' , function(){
+                document.getElementById('output').innerHTML = "";
+                document.getElementById('w').value = "";
+                document.getElementById('f').value = "";
+                document.getElementById('i').value = "";
+            })
         })
     </script>
 </body>
